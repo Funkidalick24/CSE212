@@ -8,12 +8,20 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // 1. Create an array of doubles with the size of length.
+        // 2. Use a for loop to iterate from 0 to length - 1.
+        // 3. In each iteration, calculate the multiple of the number by multiplying it with (i + 1).
+        // 4. Store the result in the corresponding index of the array.
+        // 5. Return the array after the loop completes.
 
-        return []; // replace this return statement with your own
+        var multiples = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            multiples[i] = number * (i + 1);
+        }
+        return multiples;
+
+        // replace this return statement with your own
     }
 
     /// <summary>
@@ -25,9 +33,27 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // 1. Check if the amount is greater than 0 and less than or equal to the count of the list.
+        // 2. If not, return without making any changes.
+        // 3. Calculate the effective rotation amount by taking the modulus of the amount with the count of the list.
+        // 4. Create a temporary list to store the last 'amount' elements of the original list.
+        // 5. Remove the last 'amount' elements of the original list.
+        // 6. Add the temporary list to the beginning of the original list.
+        // 7. Return.
+
+        if (amount <= 0 || amount > data.Count)
+        {
+            return;
+        }
+        int effectiveAmount = amount % data.Count;
+
+        List<int> temp = new List<int>(data.GetRange(data.Count - effectiveAmount, effectiveAmount));
+        data.RemoveRange(data.Count - effectiveAmount, effectiveAmount);
+        data.InsertRange(0, temp);
+        // Note: The above code uses List<T>.GetRange() to create a sublist and List<T>.RemoveRange() to remove elements.
     }
+
+
+
+
 }
